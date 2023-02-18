@@ -311,12 +311,13 @@ const ProjectList = ({ projects, onLoadProjects }) =&gt; {
     
         <section >
             
-            <h3>💡 Conclusion:</h3>
-<small>
-<p>Lifting state up allows us to share data across different components without having to redefine that state where it is needed. The lowest common parent component is the best place to create the state and the process of sharing the data is done through the passing of props.</p>
-<p>Because this data is now created elsewhere, we also have to be mindful of how the state is managed. Best practice is to always maintain and manage state where it has been defined. In order to do so successfully if behavior lives in a child component but state belongs to a parent component, is through inverse data flow.</p>
-<p>This means creating a callback function in the parent component that will be responsible for updating the state and passing it down as a prop to the child component with the behavior.</p>
-</small>
+            <h4>💡 Conclusion</h4>
+<iframe src="https://codesandbox.io/embed/inverse-data-flow-diagram-mtvrs6?fontsize=14&hidenavigation=1&theme=dark&view=preview"
+  style="width:100%; height:650px; border:0; border-radius: 4px; overflow:hidden;"
+  title="inverse-data-flow-diagram"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
             </section>
     
 
