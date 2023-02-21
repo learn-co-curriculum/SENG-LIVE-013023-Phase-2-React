@@ -1,4 +1,4 @@
-<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="691px" height="411px" viewBox="-0.5 -0.5 691 411" content="&lt;mxfile&gt;&lt;diagram id=&quot;6IEuy29URn_RdZbZPRW5&quot; name=&quot;Page-1&quot;&gt;zZdNb6MwEIZ/DcddAQ6UHpv069CuKmWlPbt4Aq4AI+ME0l+/JgwQr9M2q41gL8h+/cHM4/EwOGSVNw+SlumzYJA5vssah9w6vh9FoX62wr4TyCLqhERy1kneKKz5O6DoorrlDCpjohIiU7w0xVgUBcTK0KiUojanbURmvrWkCVjCOqaZrf7iTKXoVuCO+iPwJO3f7Lk4ktN+MgpVSpmojyRy55CVFEJ1rbxZQday67l06+4/GB0Mk1Cocxb43YIdzbboG9ql9r2zUmwLBu181yHLOuUK1iWN29Fan67WUpVnuufppv1+NGkHUkFzJKE9DyByUHKvp/TRgWj2ZrceQYfXqKVHkBd9cFA83GTYefRfNxDBaRwLC8e9kJAcEPwt2quv0QLTYYXdQhTwFUs0rxJbGeMWAYY/lQngLLxc7eaf8paQUcV3Zkz/C73ruTyO5vLY8+ZyuY/26X0OLJdvyvLSWaO/iGdnDRKaacPz7Lzh+SfyRniBtBFaSB6BMpCzU/EWJhV/MSGVyKLyIsWb/h7/gFqn1Xx2On/GzKR0PDJJ6uivgZE7/Nnypf2B/QmNOun4E33VVaPhMc14Uuh2rD3Wt4ss27Pmui67wYGcM9busZRQ8Xf6etivDaZS8EIdDA+WTnA70LOCZSgacbEzlGpGUUM+Daxv7nfXDQIzuLre2Uhx85fW8KMpYrOpQFnMBxvOOwb3o6v5xCv7NKa+l8HVnPfSLomRzYpK9t+xISfq40ux0d3xT6QLs/F3jtz9Bg==&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="691px" height="411px" viewBox="-0.5 -0.5 691 411" content="&lt;mxfile&gt;&lt;diagram id=&quot;6IEuy29URn_RdZbZPRW5&quot; name=&quot;Page-1&quot;&gt;zVdNb6MwEP01HHcFGCg9NunXoV1VymHPLp6AK8DIOCHpr18TBojXaZtqI9gLsp/HZub5zTA4ZFnsHiStsmfBIHd8l+0ccuv4fhxH+tkC+w4gQdwBqeSsg7wRWPF3QNBFdMMZ1IahEiJXvDLBRJQlJMrAqJSiMc3WIjffWtEULGCV0NxGf3OmMgwrdEf8EXia9W/2XFwpaG+MQJ1RJpojiNw5ZCmFUN2o2C0hb7nreen23X+wOjgmoVTnbPC7DVuabzA29Evt+2Cl2JQMWnvXIYsm4wpWFU3a1UbfrsYyVeR65umh/X50aQtSwe4IQn8eQBSg5F6b9OpAavbmtBmJjq4Ry45IDnpxULzcdDh5jF8PkILTdAQWHfdCQnqg4LvUXn1NLTAtK5yWooSvuET3arGRCR4RovypTAGtMLnawz/lW0JOFd+amv4X9q7nijieK2LPmyvkXu3TxxxaId9U1aWrRp+IZ1cNEpllw/PsuuH5J+pGdIGyEVmUPAJlIGdnxQtMVvxgQlZii5UXKd709/gXNLqsFrOz87dmJmXHI5OUjj4NjNrhz1Yv7Q9s1WniZOxP9FU3jkbQNOdpqceJDlonGFm01811a3aDCwVnrD1jIaHm7/T1cF6rp0rwUh18DxdOeDsQaOll6BtxszN0a0ZfQz7V1g/3p+uGoamvbnY2q3j4S+v4kYlYr2tQFu2DD+fdhPtRdj7x2r6NqVMzvJozNe2uGLlZUsn+O27IiRb5Utzo6fgz0sls/KMjd38A&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs/>
     <g>
         <rect x="0" y="0" width="690" height="410" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
@@ -67,13 +67,13 @@
                     <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 261px; margin-left: 553px;">
                         <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
                             <div style="display: inline-block; font-size: 11px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; background-color: rgb(255, 255, 255); white-space: nowrap;">
-                                Text
+                                project
                             </div>
                         </div>
                     </div>
                 </foreignObject>
                 <text x="553" y="264" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="11px" text-anchor="middle">
-                    Text
+                    project
                 </text>
             </switch>
         </g>
