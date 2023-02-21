@@ -4,6 +4,7 @@ transition: "slide"
 highlightTheme: "monokai"
 slideNumber: false
 title: "P2L1 - React Components & Props"
+width: 1200
 ---
 
 <!-- slide -->
@@ -20,7 +21,7 @@ The goals for Phase 2: </h2>
 
 ---
 
-<h1> Components and Props </h1>
+## Components and Props 
 
 ---
 
@@ -83,6 +84,42 @@ const h1 = (
 
 ---
 
+#### What's a component?
+
+- A function that takes a props object as an argument and returns some JSX {.fragment}
+
+<pre class="fragment"><code language="javascript">function Greeting({text: 'Hello, world!'}) {
+  return <h1>{text}</h1>  
+}
+export default Greeting;</code></pre>
+- We can render components within other components by using their name in a tag returned in their JSX {.fragment}
+<div class="fragment">
+
+```
+import Greeting from './Greeting';
+function App() {
+  return (
+    <div className="flex flex-col items-center h-screen">
+      <Greeting />
+      <Greeting text="Hi there!">
+    </div>
+  )
+}
+```
+
+</div>
+
+---
+
+<iframe src="https://codesandbox.io/embed/components-and-props-demo-2mo4om?fontsize=14&hidenavigation=1&theme=dark"
+  style="width:100%; height:700px; border:0; border-radius: 4px; overflow:hidden;"
+  title="components-and-props-demo"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+---
+
 <h2> Wireframes </h2>
 
 <div style="display: flex;">
@@ -96,7 +133,6 @@ const h1 = (
   <textarea style="font-size: 2rem; border: 2px solid black; padding: 1rem; width: 90%; background: #333; color: #eee" rows="10" cols="35"></textarea>    
   </div>
 </div>
-
 
 
 ---

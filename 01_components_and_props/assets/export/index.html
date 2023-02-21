@@ -96,7 +96,8 @@
     
         <section >
             
-            <h1> Components and Props </h1>
+            <h2>Components and Props</h2>
+
             </section>
     
 
@@ -173,6 +174,51 @@ h1.textContent = &quot;Hello!&quot;;
     
         <section >
             
+            <h4>What’s a component?</h4>
+<ul>
+<li class="fragment">A function that takes a props object as an argument and returns some JSX</li>
+</ul>
+<pre class="fragment"><code language="javascript">function Greeting({text: 'Hello, world!'}) {
+  return <h1>{text}</h1>  
+}
+export default Greeting;</code></pre>
+<ul>
+<li class="fragment">We can render components within other components by using their name in a tag returned in their JSX</li>
+</ul>
+<div class="fragment">
+<pre><code>import Greeting from './Greeting';
+function App() {
+  return (
+    &lt;div className=&quot;flex flex-col items-center h-screen&quot;&gt;
+      &lt;Greeting /&gt;
+      &lt;Greeting text=&quot;Hi there!&quot;&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <iframe src="https://codesandbox.io/embed/components-and-props-demo-2mo4om?fontsize=14&hidenavigation=1&theme=dark"
+  style="width:100%; height:700px; border:0; border-radius: 4px; overflow:hidden;"
+  title="components-and-props-demo"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+            </section>
+    
+
+
+
+    
+        <section >
+            
             <h2> Wireframes </h2>
 <div style="display: flex;">
   <div style="width: 40%">
@@ -183,7 +229,6 @@ h1.textContent = &quot;Hello!&quot;;
   <textarea style="font-size: 2rem; border: 2px solid black; padding: 1rem; width: 90%; background: #333; color: #eee" rows="10" cols="35"></textarea>    
   </div>
 </div>
-
             </section>
     
 
@@ -351,7 +396,7 @@ h1.textContent = &quot;Hello!&quot;;
       parallaxBackgroundVertical: 0,
 
       //Presentation Size
-      width: 960,
+      width: 1200,
 			height: 700,
 			margin: 0.04,
       minScale: 0.2,
