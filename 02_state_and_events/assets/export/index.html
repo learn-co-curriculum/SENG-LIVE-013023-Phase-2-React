@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
   <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
   <!-- highlight Theme -->
   
   <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/monokai.min.css">
@@ -186,11 +188,19 @@
             <h4>Defining Event Handlers</h4>
 <p>We can also define event handler functions within our components and pass the function reference to our event listener in the JSX.</p>
 <pre><code class="language-js">function Counter() {
-  const handleClick = (event) =&gt; {
-    console.log(event);
+  const [count, setCount] = useState(2);
+  const handleDecrement = (event) =&gt; {
+    if(count &gt; 0) {
+      setCount(count =&gt; count - 1);
+    }
   }
 
-  return &lt;button onClick={handleClick}&gt;Click Me&lt;/button&gt;;
+  return (
+    &lt;div&gt;
+      {count}
+      &lt;button onClick={handleDecrement}&gt;-&lt;/button&gt;
+    &lt;/div&gt;
+  );
 };
 </code></pre>
 <p>This is helpful in the case where we need to introduce additional event handling logic. We can do so without cluttering our JSX.</p>

@@ -113,11 +113,19 @@ We can also define event handler functions within our components and pass the fu
 
 ```js
 function Counter() {
-  const handleClick = (event) => {
-    console.log(event);
+  const [count, setCount] = useState(2);
+  const handleDecrement = (event) => {
+    if(count > 0) {
+      setCount(count => count - 1);
+    }
   }
 
-  return <button onClick={handleClick}>Click Me</button>;
+  return (
+    <div>
+      {count}
+      <button onClick={handleDecrement}>-</button>
+    </div>
+  );
 };
 ```
 
