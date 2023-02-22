@@ -1,4 +1,6 @@
-const ProjectForm = () => {
+import React from "react";
+
+function ProjectForm() {
   return (
     <section>
       <form className="form">

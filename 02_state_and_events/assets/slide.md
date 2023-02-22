@@ -4,9 +4,8 @@ transition: "slide"
 highlightTheme: "monokai"
 slideNumber: false
 title: "P2L2 - React State and Events slides"
+width: 1400
 ---
-
-<!-- slide -->
 
 # State & Events
 
@@ -61,17 +60,50 @@ title: "P2L2 - React State and Events slides"
 
 #### Handling events in React 
 
+Event handlers can only be attached to DOM elements, we can't attach event listeners directly to our components
+
+<div style="display: flex; flex-direction: row; font-size: 0.95em;">
+  <div style="width: 50%">
+    
+#### Doesn't work:
+
 ```js
-const Counter = () => {
+function Button() {
   return (
-    <button onClick={() => console.log("clicked!")}>
+    <button>
       Click Me
     </button>
   );
 };
+
+<Button onClick={() => console.log('clicked!')}>
+  Click Me
+</Button>
+```
+    
+    
+  </div>
+  <div style="width: 50%">
+
+#### Does work
+
+```js
+function Button({ onClick }) {
+  return (
+    <button onClick={onClick}>
+      Click Me
+    </button>
+  );
+};
+
+<Button onClick={() => console.log('clicked!')}>
+  Click Me
+</Button>
 ```
 
-**NOTE:** Events can only be attached to DOM elements, we can't attach event listeners directly to our components
+  </div>
+</div>
+
 
 ---
 
@@ -150,11 +182,11 @@ const handleClick = () => console.log('clicked')
 
 <div style="font-size: 0.9em">
 
-Currently, we are creating a `ProjectListItem` component for each project inside of the `projects` array:
+Currently, we are creating a `ProjectCard` component for each project inside of the `projects` array:
 
 ```js
-const projectListItems = projects.map(project => {
-  return <ProjectListItem key={project.id} project={project} />
+const renderedProjects = projects.map(project => {
+  return <ProjectCard key={project.id} project={project} />
 })
 ```
 
@@ -208,11 +240,11 @@ const searchResults = projects.filter((project) =>
 );
 ```
 
-5. Map over `searchResults` instead of `projects` when creating `projectListItems`:
+5. Map over `searchResults` instead of `projects` when creating `renderedProjects`:
 
 ```js
-const projectListItems = searchResults.map(project => {
-  return <ProjectListItem key={project.id} project={project} />
+const renderedProjects = searchResults.map(project => {
+  return <ProjectCard key={project.id} project={project} />
 })
 ```
 

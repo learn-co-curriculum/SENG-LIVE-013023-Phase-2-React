@@ -1,4 +1,6 @@
-const ProjectListItem = ({ project }) => {
+import React from "react";
+
+function ProjectCard({ project }) {
   const { image, name, about, link, phase } = project;
   
   return (
@@ -25,4 +27,4 @@ const ProjectListItem = ({ project }) => {
   );
 };
 
-export default ProjectListItem;
+export default ProjectCard;

@@ -1,13 +1,13 @@
-import ProjectListItem from "./ProjectListItem";
+import React from "react";
 
+import ProjectCard from "./ProjectCard";
 import projects from "../projects";
 
-const ProjectList = () => {
+function ProjectList() {
 
-  const projectListItems = projects.map(project => {
-    return <ProjectListItem key={project.id} project={project} />
+  const renderedProjects = projects.map(project => {
+    return <ProjectCard key={project.id} project={project} />
   })
-
 
   return (
     <section>
@@ -23,7 +23,7 @@ const ProjectList = () => {
       </div>
       <input type="text" placeholder="Search..."/>
 
-      <ul className="cards">{projectListItems}</ul>
+      <ul className="cards">{renderedProjects}</ul>
     </section>
   );
 };
