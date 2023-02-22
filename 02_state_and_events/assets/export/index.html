@@ -17,8 +17,6 @@
   <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
   <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
   <!-- highlight Theme -->
   
   <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/monokai.min.css">
@@ -73,8 +71,7 @@
     
         <section >
             
-            <!-- slide -->
-<h1>State &amp; Events</h1>
+            <h1>State &amp; Events</h1>
 
             </section>
     
@@ -145,16 +142,39 @@
         <section >
             
             <h4>Handling events in React</h4>
-<pre><code class="language-js">const Counter = () =&gt; {
+<p>Event handlers can only be attached to DOM elements, we can’t attach event listeners directly to our components</p>
+<div style="display: flex; flex-direction: row; font-size: 0.95em;">
+  <div style="width: 50%">
+<h4>Doesn’t work:</h4>
+<pre><code class="language-js">function Button() {
   return (
-    &lt;button onClick={() =&gt; console.log(&quot;clicked!&quot;)}&gt;
+    &lt;button&gt;
       Click Me
     &lt;/button&gt;
   );
 };
-</code></pre>
-<p><strong>NOTE:</strong> Events can only be attached to DOM elements, we can’t attach event listeners directly to our components</p>
 
+&lt;Button onClick={() =&gt; console.log('clicked!')}&gt;
+  Click Me
+&lt;/Button&gt;
+</code></pre>
+  </div>
+  <div style="width: 50%">
+<h4>Does work</h4>
+<pre><code class="language-js">function Button({ onClick }) {
+  return (
+    &lt;button onClick={onClick}&gt;
+      Click Me
+    &lt;/button&gt;
+  );
+};
+
+&lt;Button onClick={() =&gt; console.log('clicked!')}&gt;
+  Click Me
+&lt;/Button&gt;
+</code></pre>
+  </div>
+</div>
             </section>
     
 
@@ -251,9 +271,9 @@
             
             <h4>Filter by project name in ProjectList component</h4>
 <div style="font-size: 0.9em">
-<p>Currently, we are creating a <code>ProjectListItem</code> component for each project inside of the <code>projects</code> array:</p>
-<pre><code class="language-js">const projectListItems = projects.map(project =&gt; {
-  return &lt;ProjectListItem key={project.id} project={project} /&gt;
+<p>Currently, we are creating a <code>ProjectCard</code> component for each project inside of the <code>projects</code> array:</p>
+<pre><code class="language-js">const renderedProjects = projects.map(project =&gt; {
+  return &lt;ProjectCard key={project.id} project={project} /&gt;
 })
 </code></pre>
 <p>We need to make this dynamic by implementing a filter feature that returns the projects based on the user’s entry in the <code>search input</code></p>
@@ -304,10 +324,10 @@
 );
 </code></pre>
 <ol start="5">
-<li>Map over <code>searchResults</code> instead of <code>projects</code> when creating <code>projectListItems</code>:</li>
+<li>Map over <code>searchResults</code> instead of <code>projects</code> when creating <code>renderedProjects</code>:</li>
 </ol>
-<pre><code class="language-js">const projectListItems = searchResults.map(project =&gt; {
-  return &lt;ProjectListItem key={project.id} project={project} /&gt;
+<pre><code class="language-js">const renderedProjects = searchResults.map(project =&gt; {
+  return &lt;ProjectCard key={project.id} project={project} /&gt;
 })
 </code></pre>
 <p><strong>Note:</strong> If the searchQuery is an empty string, the <code>filter()</code> will return all the project items</p>
@@ -474,7 +494,7 @@
       parallaxBackgroundVertical: 0,
 
       //Presentation Size
-      width: 960,
+      width: 1400,
 			height: 700,
 			margin: 0.04,
       minScale: 0.2,

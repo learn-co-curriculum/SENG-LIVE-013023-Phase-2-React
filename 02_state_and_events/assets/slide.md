@@ -248,7 +248,7 @@ const renderedProjects = searchResults.map(project => {
 })
 ```
 
-<strong>Note:</strong> If the searchQuery is an empty string, the `filter()` will return all the project items
+**Note:** If the searchQuery is an empty string, the `filter()` will return all the project items
 
 </div>
 
