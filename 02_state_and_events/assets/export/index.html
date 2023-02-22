@@ -185,8 +185,8 @@
             
             <h4>Defining Event Handlers</h4>
 <p>We can also define event handler functions within our components and pass the function reference to our event listener in the JSX.</p>
-<pre><code class="language-js">const Counter = () =&gt; {
-  function handleClick(event) {
+<pre><code class="language-js">function Counter() {
+  const handleClick = (event) =&gt; {
     console.log(event);
   }
 

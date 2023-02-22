@@ -112,8 +112,8 @@ function Button({ onClick }) {
 We can also define event handler functions within our components and pass the function reference to our event listener in the JSX.
 
 ```js
-const Counter = () => {
-  function handleClick(event) {
+function Counter() {
+  const handleClick = (event) => {
     console.log(event);
   }
 
