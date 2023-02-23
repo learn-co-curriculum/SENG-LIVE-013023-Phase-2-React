@@ -1,14 +1,7 @@
-import React, { useState } from "react";
-
-function Header () {
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(isDarkMode => !isDarkMode)
-  }
+function Header({ isDarkMode, onToggleDarkMode }) {
 
   const handleToggleDarkMode = (e) => {
-    toggleDarkMode();
+    onToggleDarkMode();
   }
   
   const buttonText = isDarkMode ? "Light Mode" : "Dark Mode"
