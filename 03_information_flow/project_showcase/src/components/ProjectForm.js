@@ -1,4 +1,4 @@
-const ProjectForm = () => {
+function ProjectForm() {
   return (
     <section>
       <form className="form">

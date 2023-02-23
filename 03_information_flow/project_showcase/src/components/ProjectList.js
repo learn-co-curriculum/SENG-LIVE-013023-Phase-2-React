@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import ProjectListItem from "./ProjectListItem";
+import ProjectCard from "./ProjectCard";
 
-const ProjectList = () => {
+function ProjectList() {
   const [projects, setProjects] = useState([]);
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -20,17 +20,19 @@ const ProjectList = () => {
   }
 
   const searchResults = projects.filter(project => {
-    return project.name.toLowerCase().includes(searchQuery.toLowerCase())
+    return project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.about.toLowerCase().includes(searchQuery.toLowerCase());
   })
 
-  const renderProjects = (projects) => {
-    return projects.map(project => (
-      <ProjectListItem
+  const renderedProjects = searchResults.map(project => {
+    return (
+      <ProjectCard
         key={project.id}
-        {...project}
+        project={project}
       />
-    ))
-  }
+    )
+  })
+  
 
   return (
     <section>
@@ -51,7 +53,7 @@ const ProjectList = () => {
         onChange={handleSearch}
       />
 
-      <ul className="cards">{renderProjects(searchResults)}</ul>
+      <ul className="cards">{renderedProjects}</ul>
     </section>
   );
 };

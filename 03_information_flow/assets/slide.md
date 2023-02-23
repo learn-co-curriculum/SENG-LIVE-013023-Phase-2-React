@@ -4,6 +4,8 @@ transition: "slide"
 highlightTheme: "monokai"
 slideNumber: false
 title: "P2L3 - React Information Flow"
+width: 1450
+height: 1000
 ---
 
 ## React Information Flow 
@@ -40,9 +42,9 @@ From [Step 4 of Thinking in React](https://reactwithhooks.netlify.app/docs/think
 
 
 - Identify every component that renders something based on that state.
-- Find a common owner component (a single component above all the components that need the state in the hierarchy).
-- Either the common owner or another component higher up in the hierarchy should own the state.
-- If you can’t find a component where it makes sense to own the state, create a new component solely for holding the state and add it somewhere in the hierarchy above the common owner component.
+- Find a **common owner component** (a single component above all the components that need the state in the hierarchy). {.fragment}
+- Either the common owner or another component higher up in the hierarchy should own the state. {.fragment}
+- If you can’t find a component where it makes sense to own the state, create a new component solely for holding the state and add it somewhere in the hierarchy above the common owner component. {.fragment}
 
 </div>
 
@@ -59,9 +61,9 @@ From [Step 4 of Thinking in React](https://reactwithhooks.netlify.app/docs/think
 
 💡 Question 1: Do you see a problem with storing `isDarkMode` in state within the `Header` component?
 
-💡 Question 2: How about storing `projects` in state within the `ProjectList` component?
+💡 Question 2: How about storing `projects` in state within the `ProjectList` component? {.fragment}
 
-💡 Question 3: How about storing `searchQuery` in state within the `ProjectList` component?
+💡 Question 3: How about storing `searchQuery` in state within the `ProjectList` component? {.fragment}
 
 </div>
 </div>
@@ -88,6 +90,17 @@ From [Step 4 of Thinking in React](https://reactwithhooks.netlify.app/docs/think
 
 
 </div>
+
+---
+
+<iframe src="https://codesandbox.io/embed/inverse-data-flow-diagram-mtvrs6?fontsize=14&hidenavigation=1&theme=dark&view=preview"
+  style="width:100%; height:880px; border:0; border-radius: 4px; overflow:hidden;"
+  title="inverse-data-flow-diagram"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+<a href="https://mtvrs6.csb.app/" target="_blank" rel="noreferrer">🔖 Feel free to bookmark this!</a>
 
 ---
 
@@ -122,8 +135,7 @@ From [Step 4 of Thinking in React](https://reactwithhooks.netlify.app/docs/think
 <small>First, move the `isDarkMode` to the `App` component:</small>
 
 ```js
-const App = () => {
-  const [projects, setProjects] = useState([]);
+function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
 ...
@@ -137,7 +149,7 @@ const onToggleDarkMode = () => setIsDarkMode(isDarkMode => !isDarkMode);
 
 <small>Third, pass both `isDarkMode` and `onToggleDarkMode` to `Header` as props</small>
 
-```js
+```jsx
 <Header isDarkMode={isDarkMode} onToggleDarkMode={onToggleDarkMode} />
 ```
 
@@ -149,10 +161,12 @@ const onToggleDarkMode = () => setIsDarkMode(isDarkMode => !isDarkMode);
 <small>Destructure the props in the argument and use the variables to render the button text and invoke the callback within your `onClick` event handler:</small> 
 
 ```js
-const Header = ({ isDarkMode, onToggleDarkMode }) => {
+function Header({ isDarkMode, onToggleDarkMode }) {
   const handleToggleDarkMode = (e) => {
     onToggleDarkMode();
   }
+  
+  const buttonText = isDarkMode ? "Light Mode" : "Dark Mode"
 
   return (
     <header>
@@ -160,7 +174,7 @@ const Header = ({ isDarkMode, onToggleDarkMode }) => {
         <span className="logo">{"//"}</span>
         Project Showcase
       </h1>
-      <button onClick={handleToggleDarkMode}>{isDarkMode ? "Light Mode" : "Dark Mode"}</button>
+      <button onClick={handleToggleDarkMode}>{buttonText}</button>
     </header>
   );
 };
@@ -169,6 +183,19 @@ export default Header;
 ```
 
 ---
+
+### What about projects?
+
+<iframe src="https://codesandbox.io/embed/inverse-data-flow-diagram-mtvrs6?fontsize=14&hidenavigation=1&theme=dark&view=preview"
+  style="width:100%; height:880px; border:0; border-radius: 4px; overflow:hidden;"
+  title="inverse-data-flow-diagram"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+---
+
+
 
 #### Lifting Projects in State
 
