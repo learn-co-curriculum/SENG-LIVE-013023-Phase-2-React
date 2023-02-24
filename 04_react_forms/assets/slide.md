@@ -4,6 +4,8 @@ transition: "slide"
 highlightTheme: "monokai"
 slideNumber: false
 title: "P2L4 - React Forms slides"
+width: 1400
+height: 1000
 ---
 
 
@@ -52,8 +54,8 @@ Form components also need an `onSubmit` listener on the form element to handle t
 
 ### Examples
 
-- [A Form with individual pieces of state per input](https://codesandbox.io/s/controlled-form-with-individual-pieces-of-state-pbjpe4?from-embed)
-- [Refactor to formState as an object](https://codesandbox.io/s/controlled-form-with-individual-pieces-of-state-for-object-refactor-1vpvf2)
+- <a href="https://codesandbox.io/s/controlled-form-with-individual-pieces-of-state-pbjpe4?from-embed" target="_blank" rel="noreferrer">A Form with individual pieces of state per input</a>
+- <a href="https://codesandbox.io/s/controlled-form-with-individual-pieces-of-state-for-refactor-p3nee5" target="_blank" rel="noreferrer">Refactor to formState as an object</a>
 
 ---
 
@@ -63,7 +65,7 @@ Form components also need an `onSubmit` listener on the form element to handle t
 
 - When setState is called, React will re-render that component and all of its children
 - This is an expensive operation, so React optimizes by running a diffing algorithm to decide which components actually need to trigger committed changes to the DOM.
-- This diffing process is called [reconciliation](https://reactwithhooks.netlify.app/docs/reconciliation.html)
+- This diffing process is called <a href="https://reactwithhooks.netlify.app/docs/reconciliation.html" target="_blank" rel="noreferrer">reconciliation</a>
 - During reconciliation, React compares its own picture of the current state of the DOM tree with what it should look like after the change. Using this diff, the minimal DOM manipulation necessary is committed to reconcile the current DOM tree with what it should be after the change to state.
 
 </div>
@@ -236,23 +238,34 @@ const handleSubmit = (e) => {
 
 <div style="font-size: 0.8em">
 
-The state of `projects` is defined inside of the parent component `App` and the behavior occurs in the child component `ProjectForm`. When the new project is submitted, `projects` will need to be updated to include it.
+The state of `projects` is defined inside of the parent component `ProjectsContainer` and the behavior occurs in the child component `ProjectForm`. When the new project is submitted, `projects` will need to be updated to include it.
 
 💡 What do we need to do?
 </div>
 
 ---
 
-#### Implement the Inverse Data Flow Pattern!
+<iframe src="https://codesandbox.io/embed/inverse-data-flow-diagram-mtvrs6?fontsize=14&hidenavigation=1&theme=dark&view=preview"
+  style="width:100%; height:895px; border:0; border-radius: 4px; overflow:hidden;"
+  title="inverse-data-flow-diagram"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
 
-![Inverse Data Flow for adding projects](./react-inverse-data-flow-add-product.drawio.svg)
 
 ---
 
-<div style="font-size: 0.8em">
+
+![Inverse Data Flow for adding projects](./react-inverse-data-flow-add-product.drawio.svg)
+
+
+---
+
+
+<div style="font-size: 0.95em">
 Here is where the process of inverse data flow will need to occur:
 
-1. Create a helper function in `App` component called `onAddProject` that will update the `projects` state:
+1. Create a helper function in `ProjectsContainer` component called `onAddProject` that will update the `projects` state:
 
 </div>
 
@@ -261,7 +274,7 @@ const onAddProject = (newProject) => {
   setProjects(projects => [...projects, newProject]);
 };
 ```
-<div style="font-size: 0.8em">
+<div style="font-size: 0.95em">
 And in the JSX:
 </div>
 
@@ -273,7 +286,7 @@ And in the JSX:
 
 <div style="font-size: 0.8em">
 
-Inside the `ProjectForm` component, destructure `onAddProject` from the props and invoke it from within the `handleSubmit` function, passing it the formData object:
+2. Inside the `ProjectForm` component, destructure `onAddProject` from the props and invoke it from within the `handleSubmit` function, passing it the formData object:
 </div>
 
 ```js
