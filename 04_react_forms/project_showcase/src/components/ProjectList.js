@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import ProjectListItem from "./ProjectListItem";
+import ProjectCard from "./ProjectCard";
 
-const ProjectList = ({ projects, onLoadProjects }) => {
+function ProjectList({ projects, onLoadProjects }) {
 
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -13,10 +13,10 @@ const ProjectList = ({ projects, onLoadProjects }) => {
     return project.name.toLowerCase().includes(searchQuery.toLowerCase())
   })
 
-  const projectListItems = searchResults.map(project => (
-    <ProjectListItem
+  const projectCards = searchResults.map(project => (
+    <ProjectCard
       key={project.id}
-      {...project}
+      project={project}
     />
   ))
 
@@ -39,7 +39,7 @@ const ProjectList = ({ projects, onLoadProjects }) => {
         onChange={handleSearch}
       />
 
-      <ul className="cards">{projectListItems}</ul>
+      <ul className="cards">{projectCards}</ul>
     </section>
   );
 };

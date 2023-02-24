@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ProjectForm from "./ProjectForm";
 import ProjectList from "./ProjectList";
 
-const ProjectsContainer = () => {
+function ProjectsContainer() {
   const [projects, setProjects] = useState([]);
 
   const onLoadProjects = () => {

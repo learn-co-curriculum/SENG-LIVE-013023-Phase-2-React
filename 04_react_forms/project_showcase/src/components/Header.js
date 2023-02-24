@@ -1,17 +1,19 @@
 import React from "react";
 
-const Header = ({ isDarkMode, onToggleDarkMode }) => {
+function Header({ isDarkMode, onToggleDarkMode }) {
   const handleToggleDarkModeClick = (e) => {
     onToggleDarkMode();
   }
 
+  const buttonText = isDarkMode ? "Light Mode" : "Dark Mode"
+  
   return (
     <header>
       <h1>
         <span className="logo">{"//"}</span>
         Project Showcase
       </h1>
-      <button onClick={handleToggleDarkModeClick}>{isDarkMode ? "Light Mode" : "Dark Mode"}</button>
+      <button onClick={handleToggleDarkModeClick}>{buttonText}</button>
     </header>
   );
 };

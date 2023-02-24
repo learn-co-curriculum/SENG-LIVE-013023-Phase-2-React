@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProjectForm = () => {
+function ProjectForm() {
   return (
     <section>
       <form className="form" autoComplete="off">

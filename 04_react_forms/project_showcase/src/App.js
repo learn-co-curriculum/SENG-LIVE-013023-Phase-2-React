@@ -3,7 +3,7 @@ import { useState } from "react";
 import Header from "./components/Header";
 import ProjectsContainer from "./components/ProjectsContainer";
 
-const App = () => {
+function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   const onToggleDarkMode = () => {
