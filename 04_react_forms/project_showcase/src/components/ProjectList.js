@@ -5,7 +5,7 @@ function ProjectList({ projects, onLoadProjects }) {
 
   const [searchQuery, setSearchQuery] = useState("")
 
-  const handleSearch = (e) => {
+  const handleSearchQueryChange = (e) => {
     setSearchQuery(e.target.value)
   }
 
@@ -36,7 +36,8 @@ function ProjectList({ projects, onLoadProjects }) {
       <input
         type="text"
         placeholder="Search..."
-        onChange={handleSearch}
+        onChange={handleSearchQueryChange}
+        value={searchQuery}
       />
 
       <ul className="cards">{projectCards}</ul>

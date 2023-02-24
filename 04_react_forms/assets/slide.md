@@ -36,7 +36,7 @@ height: 1000
 
 To keep track of each input's value, you need:
 
-1. State for the input that will manage the input's value
+1. State for the input that corresponds the input's value
 
 2. A `value` attribute on the input that corresponds to that piece of state
 
