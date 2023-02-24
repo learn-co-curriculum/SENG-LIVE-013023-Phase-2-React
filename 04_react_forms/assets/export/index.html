@@ -17,7 +17,6 @@
   <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
   <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
 
-
   <!-- highlight Theme -->
   
   <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/monokai.min.css">
@@ -195,14 +194,14 @@ setState({...state, prop: "New Value"})
             <h3>🛠️ ProjectForm setup</h3>
 <div style="display: flex">
 <div style="width: 70%">
-<small>1. For each input element in the form, create a new state variable:</small>
+<small>1. For each input element in the form, we can create a new state variable:</small>
 <pre><code class="language-js">const [name, setName] = useState(&quot;&quot;);
 const [about, setAbout] = useState(&quot;&quot;);
 const [phase, setPhase] = useState(&quot;&quot;);
 const [link, setLink] = useState(&quot;&quot;);
 const [image, setImage] = useState(&quot;&quot;);
 </code></pre>
-<p><small>A more elegant approach is to create a state object with key/value pairs associated with each form field:</small></p>
+<p><small>But a more elegant approach, in this case, is to create a state object with key/value pairs associated with each form field:</small></p>
 <pre><code class="language-js">const [formData, setFormData] = useState({
   name: &quot;&quot;,
   about: &quot;&quot;,
@@ -244,8 +243,8 @@ const [image, setImage] = useState(&quot;&quot;);
     
         <section >
             
-            <p><small>3. Add an onChange listener for each input field using a helper function:</small>
-Example:</p>
+            <p><small>3. Add an onChange listener for each input field using a helper function:</small></p>
+<p>Example:</p>
 <pre><code class="language-js">&lt;input 
   type=&quot;text&quot; 
   id=&quot;name&quot; 
@@ -423,12 +422,18 @@ And in the JSX:
         <section >
             
             <h3>💡 Conclusion</h3>
-<div style="font-size: 0.8em">
+<div style="font-size: 0.95em">
 <ul>
 <li>State is a very integral part of the way that React applications render and manipulate the DOM.</li>
-<li>React prefers using state to update the forms and keep track of the form fields values, making them controlled inputs, rather than letting form inputs manage their own internal state (through their value).</li>
-<li>What our user sees in the input fields reflects the value of the state associated with that field.</li>
-<li>Example: Doing this allows us to make an edit form populated with a project’s previously saved values for the inputs by setting the formState to match the saved record.</li>
+<li class="fragment">React prefers using state to update forms and keep track of form fields values, making them controlled inputs, rather than letting form inputs manage their own internal state (through their value).</li>
+<li class="fragment">What our user sees in the input fields reflects the value of the state associated with that field.</li>
+<li class="fragment">This allows us to easily add rich interactive features to our form controls like:
+<ul>
+<li class="fragment">changing the options of one of our <code>select</code> inputs based on the changed value of another <code>input</code></li>
+<li class="fragment">hiding or displaying inputs based on the value of other inputs.</li>
+<li class="fragment">validating inputs based on a combination of their value and other input values.</li>
+</ul>
+</li>
 </ul>
 </div>
             </section>

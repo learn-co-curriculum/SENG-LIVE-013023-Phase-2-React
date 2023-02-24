@@ -99,7 +99,7 @@ setState({...state, prop: "New Value"})
 
 <div style="display: flex">
 <div style="width: 70%">
-<small>1. For each input element in the form, create a new state variable:</small>
+<small>1. For each input element in the form, we can create a new state variable:</small>
 
 ```js
 const [name, setName] = useState("");
@@ -109,7 +109,7 @@ const [link, setLink] = useState("");
 const [image, setImage] = useState("");
 ```
 
-<small>A more elegant approach is to create a state object with key/value pairs associated with each form field:</small>
+<small>But a more elegant approach, in this case, is to create a state object with key/value pairs associated with each form field:</small>
 
 ```js
 const [formData, setFormData] = useState({
@@ -154,7 +154,9 @@ Example:
 ---
 
 <small>3. Add an onChange listener for each input field using a helper function:</small>
+
 Example:
+
 ```js
 <input 
   type="text" 
@@ -311,11 +313,14 @@ const handleSubmit = (e) => {
 
 ### 💡 Conclusion
 
-<div style="font-size: 0.8em">
+<div style="font-size: 0.95em">
 
 - State is a very integral part of the way that React applications render and manipulate the DOM. 
-- React prefers using state to update the forms and keep track of the form fields values, making them controlled inputs, rather than letting form inputs manage their own internal state (through their value). 
-- What our user sees in the input fields reflects the value of the state associated with that field. 
-- Example: Doing this allows us to make an edit form populated with a project's previously saved values for the inputs by setting the formState to match the saved record.
+- React prefers using state to update forms and keep track of form fields values, making them controlled inputs, rather than letting form inputs manage their own internal state (through their value). {.fragment}
+- What our user sees in the input fields reflects the value of the state associated with that field. {.fragment}
+- This allows us to easily add rich interactive features to our form controls like: {.fragment}
+  - changing the options of one of our `select` inputs based on the changed value of another `input` {.fragment}
+  - hiding or displaying inputs based on the value of other inputs. {.fragment}
+  - validating inputs based on a combination of their value and other input values. {.fragment}
 
 </div>
