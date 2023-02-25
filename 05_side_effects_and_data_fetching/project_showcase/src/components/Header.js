@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = ({ isDarkMode, onToggleDarkMode }) => {
+function Header({ isDarkMode, onToggleDarkMode }) {
   const handleToggleDarkModeClick = (e) => {
     onToggleDarkMode();
   }

@@ -1,23 +1,30 @@
-import ProjectListItem from "./ProjectListItem";
-import { useState } from "react";
+import { useState } from 'react';
+import ProjectCard from "./ProjectCard";
 
-const ProjectList = ({ projects }) => {
-  const [searchQuery, setSearchQuery] = useState("");
+function ProjectList({ projects, onLoadProjects }) {
+  const [searchQuery, setSearchQuery] = useState("")
 
-  const searchResults = projects.filter((project) => {
-    return project.name.toLowerCase().includes(searchQuery.toLowerCase());
-  });
 
-  const projectListItems = searchResults.map((project) => (
-    <ProjectListItem key={project.id} {...project} />
-  ));
+  const searchResults = projects.filter(project => {
+    return project.name.toLowerCase().includes(searchQuery.toLowerCase())
+  })
 
-  const handleOnChange = (e) => setSearchQuery(e.target.value);
+  const projectCards = searchResults.map(project => (
+    <ProjectCard
+      key={project.id}
+      project={project}
+    />
+  ))
+
+  const handleSearchQueryChange = (e) => {
+    setSearchQuery(e.target.value)
+  }
 
   return (
     <section>
+      <button onClick={onLoadProjects}>Load Projects</button>
       <h2>Projects</h2>
-      {/* <h1>Count: {count}</h1> */}
+
       <div className="filter">
         <button>All</button>
         <button>Phase 5</button>
@@ -26,9 +33,13 @@ const ProjectList = ({ projects }) => {
         <button>Phase 2</button>
         <button>Phase 1</button>
       </div>
-      <input type="text" placeholder="Search..." onChange={handleOnChange} />
+      <input
+        type="text"
+        placeholder="Search..."
+        onChange={handleSearchQueryChange}
+      />
 
-      <ul className="cards">{projectListItems}</ul>
+      <ul className="cards">{projectCards}</ul>
     </section>
   );
 };

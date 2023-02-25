@@ -7,8 +7,9 @@ const initialFormState = {
   link: "",
   image: ""
 }
-const ProjectForm = ({ onAddProject }) => {
+function ProjectForm({ onAddProject }) {
   const [formData, setFormData] = useState(initialFormState)
+  const { name, about, phase, link, image } = formData;
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +24,6 @@ const ProjectForm = ({ onAddProject }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     onAddProject(formData);
     setFormData(initialFormState);
   }
@@ -38,7 +38,7 @@ const ProjectForm = ({ onAddProject }) => {
           type="text"
           id="name"
           name="name"
-          value={formData.name}
+          value={name}
           onChange={handleOnChange}
         />
 
@@ -46,7 +46,7 @@ const ProjectForm = ({ onAddProject }) => {
         <textarea
           id="about"
           name="about"
-          value={formData.about}
+          value={about}
           onChange={handleOnChange}
         />
 
@@ -54,7 +54,7 @@ const ProjectForm = ({ onAddProject }) => {
         <select
           name="phase"
           id="phase"
-          value={formData.phase}
+          value={phase}
           onChange={handleOnChange}
         >
           <option>Select One</option>
@@ -70,7 +70,7 @@ const ProjectForm = ({ onAddProject }) => {
           type="text"
           id="link"
           name="link"
-          value={formData.link}
+          value={link}
           onChange={handleOnChange}
         />
 
@@ -79,7 +79,7 @@ const ProjectForm = ({ onAddProject }) => {
           type="text" 
           id="image" 
           name="image"
-          value={formData.image}
+          value={image}
           onChange={handleOnChange}
         />
 
