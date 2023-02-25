@@ -4,6 +4,7 @@ transition: "slide"
 highlightTheme: "monokai"
 slideNumber: false
 title: "P2L5 - React Side Effects & Data Fetching slides"
+height: 800
 ---
 
 ## Side Effects and Data Fetching 💻 
@@ -57,8 +58,8 @@ We want to be able to submit the form to create a new project, see the project a
 <small>The React components we've seen so far are 'pure functions'. This means that given an input(such as a props and state), the return is 100% predictable.</small>
 
 ```js
-const Greeting = ({ name }) => {
-  return <h1> Hello, {name} </h1>;
+function Greeting({ name }) {
+  return <h1>Hello, {name}</h1>;
 };
 
 export default Greeting;
@@ -84,7 +85,7 @@ The term 'side effect' not only applies to React but to all functional programmi
 
 ---
 
-<img src="./react-component-lifecycle.png" alt="React component lifecycle diagram" style="height: 80vh" />
+<img src="./react-component-lifecycle.png" alt="React component lifecycle diagram" style="height: 65vh;" />
 
 ---
 
@@ -102,14 +103,15 @@ The term 'side effect' not only applies to React but to all functional programmi
 
 <div style="font-size: 0.7em">
 
-- `useEffect()` runs both upon the first render (afterwards) and then with every subsequent re-render. 
-- we can limit when the effect will run again by specifying the values for props, state, etc. on which this effect depends {.fragment}
+- `useEffect()` runs after the first render and then after every subsequent re-render. 
+
 
 - Takes in two arguments: {.fragment}
 
   - A callback function defining the logic to be executed as a side effect(the 'effect') {.fragment}
 
   - A dependency array that defines when the side effect should occur. This argument is optional and does not always need to be provided {.fragment}
+  - The dependency array allows us to limit when the effect will run again by specifying the values for props, state, etc. on which this effect depends {.fragment}
 
 - `useEffect()` is essentially telling React that the component needs to do something else AFTER the component has rendered {.fragment}
 
@@ -134,7 +136,7 @@ useEffect(() => {
 
 - In this example, only 1 argument is passed to useEffect {.fragment}
 
-- The dependency array which is the optional second argument is left out {.fragment}
+- The dependency array is omitted {.fragment}
 
 - This side effect will synchronize with all renders {.fragment}
 
@@ -154,9 +156,9 @@ useEffect(() => {
 
 - In this example, the dependency array is passed as the second argument {.fragment}
 
-- The dependency array is empty with no provided value {.fragment}
+- The dependency array is empty with no provided values {.fragment}
 
-- That means that the side effect will only run one time, upon the initial render of the component and no more after that. It does not synchronize with any props or state. {.fragment}
+- That means that the side effect will only run one time, upon the initial render of the component. It does not synchronize with any props or state. {.fragment}
 
 </div>
 
@@ -173,9 +175,9 @@ useEffect(() => {
 
 <div style="font-size: 0.65em">
 
-- In this example, the dependency array is passed a piece of data. This data can be either a prop or a state variable {.fragment}
+- In this example, the dependency array is passed a piece of data. This data can be any object or function from elsewhere in our React code that we use within the side effect function. {.fragment}
 
-- That means that the side effect will run once upon the components initial render and then only re-run when the value of the provided data changes {.fragment}
+- That means that the side effect will run once upon the component's initial render and then after any render where one of the dependencies changed. {.fragment}
 
 - We need to: {.fragment}
 
@@ -208,7 +210,7 @@ useEffect(() => {
 
 
 ```js
-const Timer = () => {
+function Timer() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -238,7 +240,7 @@ const Timer = () => {
 </small>
 
 
-  <img src="./react-component-lifecycle.png" alt="React component lifecycle diagram" style="height: 55vh" />
+  <img src="./react-component-lifecycle.png" alt="React component lifecycle diagram" style="height: 40vh" />
 
 ---
 
@@ -247,7 +249,7 @@ const Timer = () => {
   <div style="text-align: left">
   
   **NOTE:** In Development when using React `StrictMode` (which we are):</div>
-  - components will be doubled rendered when they first mount to help you spot errors more easily {.fragment}
+  - components will be double rendered when they first mount to help you spot errors more easily {.fragment}
   - the component will go through a mount and update right away {.fragment}
   - In the codesandbox demo, I removed Strict Mode so we can more easily understand what's happening with the cleanup. {.fragment}
   - In your own development it may seem like the cleanup function is running right when the component loads. The double render from StrictMode is the reason. {.fragment}
@@ -311,4 +313,4 @@ const Timer = () => {
 
 ---
 
-<img src="./component-lifecycle.drawio.svg" style="height: 75vh" />
+<img src="./component-lifecycle.drawio.svg" style="height: 55vh" />

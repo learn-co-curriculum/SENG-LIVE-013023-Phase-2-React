@@ -17,8 +17,6 @@
   <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
   <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
   <!-- highlight Theme -->
   
   <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/monokai.min.css">
@@ -142,8 +140,8 @@
             
             <h3>What to know before discussing side effects?</h3>
 <p><small>The React components we’ve seen so far are ‘pure functions’. This means that given an input(such as a props and state), the return is 100% predictable.</small></p>
-<pre><code class="language-js">const Greeting = ({ name }) =&gt; {
-  return &lt;h1&gt; Hello, {name} &lt;/h1&gt;;
+<pre><code class="language-js">function Greeting({ name }) {
+  return &lt;h1&gt;Hello, {name}&lt;/h1&gt;;
 };
 
 export default Greeting;
@@ -174,7 +172,7 @@ https://www.freecodecamp.org/news/react-useeffect-absolute-beginners/</p>
     
         <section >
             
-            <img src="./react-component-lifecycle.png" alt="React component lifecycle diagram" style="height: 80vh" />
+            <img src="./react-component-lifecycle.png" alt="React component lifecycle diagram" style="height: 65vh;" />
             </section>
     
 
@@ -209,10 +207,7 @@ https://www.freecodecamp.org/news/react-useeffect-absolute-beginners/</p>
 <div style="font-size: 0.7em">
 <ul>
 <li>
-<p><code>useEffect()</code> runs both upon the first render (afterwards) and then with every subsequent re-render.</p>
-</li>
-<li class="fragment">
-<p>we can limit when the effect will run again by specifying the values for props, state, etc. on which this effect depends</p>
+<p><code>useEffect()</code> runs after the first render and then after every subsequent re-render.</p>
 </li>
 <li class="fragment">
 <p>Takes in two arguments:</p>
@@ -222,6 +217,9 @@ https://www.freecodecamp.org/news/react-useeffect-absolute-beginners/</p>
 </li>
 <li class="fragment">
 <p>A dependency array that defines when the side effect should occur. This argument is optional and does not always need to be provided</p>
+</li>
+<li class="fragment">
+<p>The dependency array allows us to limit when the effect will run again by specifying the values for props, state, etc. on which this effect depends</p>
 </li>
 </ul>
 </li>
@@ -260,7 +258,7 @@ https://www.freecodecamp.org/news/react-useeffect-absolute-beginners/</p>
 <p>In this example, only 1 argument is passed to useEffect</p>
 </li>
 <li class="fragment">
-<p>The dependency array which is the optional second argument is left out</p>
+<p>The dependency array is omitted</p>
 </li>
 <li class="fragment">
 <p>This side effect will synchronize with all renders</p>
@@ -286,10 +284,10 @@ https://www.freecodecamp.org/news/react-useeffect-absolute-beginners/</p>
 <p>In this example, the dependency array is passed as the second argument</p>
 </li>
 <li class="fragment">
-<p>The dependency array is empty with no provided value</p>
+<p>The dependency array is empty with no provided values</p>
 </li>
 <li class="fragment">
-<p>That means that the side effect will only run one time, upon the initial render of the component and no more after that. It does not synchronize with any props or state.</p>
+<p>That means that the side effect will only run one time, upon the initial render of the component. It does not synchronize with any props or state.</p>
 </li>
 </ul>
 </div>
@@ -309,10 +307,10 @@ https://www.freecodecamp.org/news/react-useeffect-absolute-beginners/</p>
 <div style="font-size: 0.65em">
 <ul>
 <li class="fragment">
-<p>In this example, the dependency array is passed a piece of data. This data can be either a prop or a state variable</p>
+<p>In this example, the dependency array is passed a piece of data. This data can be any object or function from elsewhere in our React code that we use within the side effect function.</p>
 </li>
 <li class="fragment">
-<p>That means that the side effect will run once upon the components initial render and then only re-run when the value of the provided data changes</p>
+<p>That means that the side effect will run once upon the component’s initial render and then after any render where one of the dependencies changed.</p>
 </li>
 <li class="fragment">
 <p>We need to:</p>
@@ -357,7 +355,7 @@ https://www.freecodecamp.org/news/react-useeffect-absolute-beginners/</p>
         <section >
             
             <h3>Cleanup example</h3>
-<pre><code class="language-js">const Timer = () =&gt; {
+<pre><code class="language-js">function Timer() {
   const [count, setCount] = useState(0);
 
   useEffect(() =&gt; {
@@ -392,7 +390,7 @@ https://www.freecodecamp.org/news/react-useeffect-absolute-beginners/</p>
 </li>
 </ul>
 </small>
-  <img src="./react-component-lifecycle.png" alt="React component lifecycle diagram" style="height: 55vh" />
+  <img src="./react-component-lifecycle.png" alt="React component lifecycle diagram" style="height: 40vh" />
             </section>
     
 
@@ -405,7 +403,7 @@ https://www.freecodecamp.org/news/react-useeffect-absolute-beginners/</p>
   <div style="text-align: left">
 <p><strong>NOTE:</strong> In Development when using React <code>StrictMode</code> (which we are):</div></p>
 <ul>
-<li class="fragment">components will be doubled rendered when they first mount to help you spot errors more easily</li>
+<li class="fragment">components will be double rendered when they first mount to help you spot errors more easily</li>
 <li class="fragment">the component will go through a mount and update right away</li>
 <li class="fragment">In the codesandbox demo, I removed Strict Mode so we can more easily understand what’s happening with the cleanup.</li>
 <li class="fragment">In your own development it may seem like the cleanup function is running right when the component loads. The double render from StrictMode is the reason.</li>
@@ -516,7 +514,7 @@ https://www.freecodecamp.org/news/react-useeffect-absolute-beginners/</p>
     
         <section >
             
-            <img src="./component-lifecycle.drawio.svg" style="height: 75vh" />
+            <img src="./component-lifecycle.drawio.svg" style="height: 55vh" />
             </section>
     
 
@@ -656,7 +654,7 @@ https://www.freecodecamp.org/news/react-useeffect-absolute-beginners/</p>
 
       //Presentation Size
       width: 960,
-			height: 700,
+			height: 800,
 			margin: 0.04,
       minScale: 0.2,
       maxScale: 2,
