@@ -1,15 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 import ProjectCard from "./ProjectCard";
 
-function ProjectList({ projects, onLoadProjects }) {
-  const [searchQuery, setSearchQuery] = useState("")
+function ProjectList({ 
+  projects, 
+  setSelectedPhase,
+  setSearchQuery
+}) {
+  const [searchInputText, setSearchInputText] = useState("");
+  
+  useEffect(() => {
+    let scheduledUpdate = setTimeout(() => {
+      setSearchQuery(searchInputText)
+    }, 300)
 
+    console.log("scheduling update");
+    return () => {
+      console.log("running cleanup");
+      clearTimeout(scheduledUpdate);
+    }
+  }, [searchInputText, setSearchQuery])
 
-  const searchResults = projects.filter(project => {
-    return project.name.toLowerCase().includes(searchQuery.toLowerCase())
-  })
-
-  const projectCards = searchResults.map(project => (
+  const projectCards = projects.map(project => (
     <ProjectCard
       key={project.id}
       project={project}
@@ -17,27 +28,26 @@ function ProjectList({ projects, onLoadProjects }) {
   ))
 
   const handleSearchQueryChange = (e) => {
-    setSearchQuery(e.target.value)
+    setSearchInputText(e.target.value)
   }
 
   return (
     <section>
-      <button onClick={onLoadProjects}>Load Projects</button>
       <h2>Projects</h2>
 
       <div className="filter">
-        <button>All</button>
-        <button>Phase 5</button>
-        <button>Phase 4</button>
-        <button>Phase 3</button>
-        <button>Phase 2</button>
-        <button>Phase 1</button>
+        <button onClick={() => setSelectedPhase("")}>All</button>
+        <button onClick={() => setSelectedPhase("5")}>Phase 5</button>
+        <button onClick={() => setSelectedPhase("4")}>Phase 4</button>
+        <button onClick={() => setSelectedPhase("3")}>Phase 3</button>
+        <button onClick={() => setSelectedPhase("2")}>Phase 2</button>
+        <button onClick={() => setSelectedPhase("1")}>Phase 1</button>
       </div>
       <input
         type="text"
         placeholder="Search..."
         onChange={handleSearchQueryChange}
-      />
+        value={searchInputText} />
 
       <ul className="cards">{projectCards}</ul>
     </section>
