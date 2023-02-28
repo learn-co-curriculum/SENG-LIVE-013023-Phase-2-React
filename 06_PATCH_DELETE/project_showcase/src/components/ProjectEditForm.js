@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 function ProjectEditForm({ projectToEdit, onUpdateProject }) {
-  
-
   const [formData, setFormData] = useState(projectToEdit);
 
   const { name, about, phase, link, image } = formData;
@@ -23,7 +21,27 @@ function ProjectEditForm({ projectToEdit, onUpdateProject }) {
   function handleSubmit(e) {
     e.preventDefault();
     // Add code here
-    onUpdateProject();
+    // optimistic version of PATCH update
+    // fetch(`http://localhost:4000/projects/${projectToEdit.id}`, {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(formData)
+    // })
+      
+    // onUpdateProject(formData);
+
+    // pessimistic version of PATCH update
+    fetch(`http://localhost:4000/projects/${projectToEdit.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(response => response.json())
+      .then(updatedProject => onUpdateProject(updatedProject));
   }
 
   return (

@@ -23,19 +23,38 @@ function ProjectsContainer() {
     fetch(url)
       .then((res) => res.json())
       .then((projectsData) => setProjects(projectsData));
-  }, [selectedPhase, searchQuery])
+  }, [searchQuery, selectedPhase])
 
-  const onAddProject = (project) => {
-    setProjects(projects => [...projects, project]);
+  const onAddProject = (savedProject) => {
+    setProjects(projects => [...projects, savedProject]);
   }
   
-  const onUpdateProject = () => {
+  const onUpdateProject = (updatedProject) => {
     setProjectToEdit(null);
+    setProjects(projects => {
+      return projects.map(originalProject => {
+        if(originalProject.id === updatedProject.id) {
+          return updatedProject;
+        } else {
+          return originalProject;
+        }
+      })
+    })
   };
 
   const onEditProject = (projectToEdit) => {
     setProjectToEdit(projectToEdit);
   };
+
+  const onDeleteProject = (projectId) => {
+    console.log(`deleting project ${projectId}`);
+    // setProjects(projects => {
+    //   return projects.filter(project => {
+    //     return project.id !== projectId;
+    //   })
+    // })
+    setProjects(projects => projects.filter(p => p.id !== projectId))
+  }
 
   const renderForm = () => {
     if (projectToEdit) {
@@ -57,6 +76,8 @@ function ProjectsContainer() {
         projects={projects}
         setSelectedPhase={setSelectedPhase}
         onEditProject={onEditProject}
+        onUpdateProject={onUpdateProject}
+        onDeleteProject={onDeleteProject}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />

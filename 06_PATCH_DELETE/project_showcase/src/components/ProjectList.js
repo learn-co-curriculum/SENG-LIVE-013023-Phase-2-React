@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 function ProjectList({
   projects,
   onEditProject,
+  onUpdateProject,
+  onDeleteProject,
   setSelectedPhase,
   setSearchQuery
 }) {
@@ -15,6 +17,8 @@ function ProjectList({
         key={project.id}
         project={project}
         onEditProject={onEditProject}
+        onUpdateProject={onUpdateProject}
+        onDeleteProject={onDeleteProject}
       />
     );
   });
