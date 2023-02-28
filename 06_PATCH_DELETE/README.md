@@ -16,7 +16,7 @@
 
 - Observe the `ProjectEditForm` component
 
-- Observe the edit button added to `ProjectListItem` component
+- Observe the edit button added to `ProjectCard` component
 
 - Observe the updates applied in the `App` component
 

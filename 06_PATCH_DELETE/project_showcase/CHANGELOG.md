@@ -15,21 +15,21 @@ To allow users to edit projects, some UI changes were necessary:
     - if it does, render `ProjectEditForm`, passing `projectToEdit` and `onUpdateProject` as props
     - if it doesn't, render `ProjectForm` as before
   - define a `onEditProject` callback function that will be called when a user clicks the edit button and store the chosen project in the piece of App state
-  - pass the `onEditProject` callback to `ProjectList` -> then to `ProjectListItem`
+  - pass the `onEditProject` callback to `ProjectList` -> then to `ProjectCard`
 - Within the `ProjectEditForm` component, we need to:
   - set up our `formData` as an object in this case
   - add a `handleChange` event handler that will dynamically (and non-destructively) update the object
   - add a `handleSubmit` event handler that will make a PATCH request to update the project in the db
 - In `ProjectList` we need to:
   - accept `onEditProject` as a prop
-  - pass `onEditProject` as a prop to each `ProjectListItem`
-  - pass the entire `project` as a prop to `ProjectListItem` instead of spreading out its properties
-- In `ProjectListItem` we need to:
+  - pass `onEditProject` as a prop to each `ProjectCard`
+  - pass the entire `project` as a prop to `ProjectCard` instead of spreading out its properties
+- In `ProjectCard` we need to:
   - accept `onEditProject` as a prop
   - accept `project` as a prop (instead of destructuring its properties within the parameter list)
   - destructure the properties of `project` within the body of the component function (so we can still access them within our JSX)
   - Add a button with an edit icon within the JSX
-  - add an event listener to the edit icon in ProjectListItem that invokes the `onEditProject` callback with the `project` received as a prop as its argument.
+  - add an event listener to the edit icon in ProjectCard that invokes the `onEditProject` callback with the `project` received as a prop as its argument.
 - In `ProjectEditForm` we need to
   - accept `projectToEdit` as a prop
   - refactor component to use a `formData` object in state
@@ -41,7 +41,7 @@ To allow users to edit projects, some UI changes were necessary:
 
 To allow users to delete projects, a few other UI changes were necessary:
 
-- In `ProjectListItem`, we need to:
+- In `ProjectCard`, we need to:
 
   - Add a button with a trash can icon in it.
   - Add a `handleDeleteClick` function that will handle clicks on that button.
@@ -50,7 +50,7 @@ To allow users to delete projects, a few other UI changes were necessary:
   - in `ProjectEditForm`
     - within `handleSubmit` for `projectEditForm` submit a patch request to update the project in the db.
     - ensure that the project on the page updates properly
-  - in `ProjectListItem`
+  - in `ProjectCard`
     - within `handleDeleteClick`
 
 ## Changelog
@@ -124,7 +124,7 @@ const renderForm = () => {
 }
 ```
 
-#### pass the `onEditProject` callback to `ProjectList` -> then to `ProjectListItem`
+#### pass the `onEditProject` callback to `ProjectList` -> then to `ProjectCard`
 
 ```js
 // <ProjectList
@@ -277,12 +277,12 @@ const ProjectList = ({
 }) => {...
 ```
 
-### pass `onEditProject` as a prop to each `ProjectListItem`
+### pass `onEditProject` as a prop to each `ProjectCard`
 
 ```js
 const projectItems = projects.map((project) => {
   return (
-    <ProjectListItem
+    <ProjectCard
       key={project.id}
       project={project}
       onEditProject={onEditProject}
@@ -291,18 +291,18 @@ const projectItems = projects.map((project) => {
 });
 ```
 
-## In `ProjectListItem` we need to:
+## In `ProjectCard` we need to:
 
 ### accept `onEditProject` and `project` as props
 
 ```jsx
-const ProjectListItem = ({ id, about, image, link, name, phase }) => {
+const ProjectCard = ({ id, about, image, link, name, phase }) => {
 ```
 
 becomes
 
 ```jsx
-const ProjectListItem = ({ project, onEditProject }) => {
+const ProjectCard = ({ project, onEditProject }) => {
 ```
 
 ### Add a button with an edit icon within the JSX
@@ -338,7 +338,7 @@ import { FaPencilAlt, FaTrash } from "react-icons/fa";
 }
 ```
 
-### add an event listener to the edit icon in ProjectListItem that invokes the `onEditProject` callback with the project's `id` received as a prop as its argument.
+### add an event listener to the edit icon in ProjectCard that invokes the `onEditProject` callback with the project's `id` received as a prop as its argument.
 
 ```js
 const handleEditClick = () => {

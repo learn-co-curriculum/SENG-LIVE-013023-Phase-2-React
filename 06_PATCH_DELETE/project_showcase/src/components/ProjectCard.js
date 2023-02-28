@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 
-const ProjectListItem = ({ project, onEditProject }) => {
+function ProjectCard({ project, onEditProject }) {
   const { id, image, about, name, link, phase } = project;
 
   const [clapCount, setClapCount] = useState(0);
@@ -48,4 +48,4 @@ const ProjectListItem = ({ project, onEditProject }) => {
   );
 };
 
-export default ProjectListItem;
+export default ProjectCard;

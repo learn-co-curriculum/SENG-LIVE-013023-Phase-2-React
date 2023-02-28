@@ -7,7 +7,7 @@ const initialState = {
   link: "",
   image: "",
 };
-const ProjectForm = ({ onAddProject }) => {
+function ProjectForm({ onAddProject }) {
   const [formData, setFormData] = useState(initialState);
 
   const handleChange = (e) => {
@@ -26,7 +26,6 @@ const ProjectForm = ({ onAddProject }) => {
     })
       .then((response) => response.json())
       .then((newProject) => {
-        console.log(newProject)
         onAddProject(newProject);
       });
     setFormData(initialState);

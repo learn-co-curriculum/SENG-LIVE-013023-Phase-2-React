@@ -1,17 +1,17 @@
-import ProjectListItem from "./ProjectListItem";
+import ProjectCard from "./ProjectCard";
 import { useState, useEffect } from "react";
 
-const ProjectList = ({
+function ProjectList({
   projects,
   onEditProject,
   setSelectedPhase,
   setSearchQuery
-}) => {
+}) {
   const [searchInputText, setSearchInputText] = useState("");
 
-  const projectItems = projects.map((project) => {
+  const projectCards = projects.map((project) => {
     return (
-      <ProjectListItem
+      <ProjectCard
         key={project.id}
         project={project}
         onEditProject={onEditProject}
@@ -45,7 +45,7 @@ const ProjectList = ({
       </div>
       <input type="text" placeholder="Search..." onChange={handleOnChange} />
 
-      <ul className="cards">{projectItems}</ul>
+      <ul className="cards">{projectCards}</ul>
     </section>
   );
 };

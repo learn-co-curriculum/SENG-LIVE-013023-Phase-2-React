@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ProjectEditForm = ({ projectToEdit, onUpdateProject }) => {
+function ProjectEditForm({ projectToEdit, onUpdateProject }) {
   
 
   const [formData, setFormData] = useState(projectToEdit);
