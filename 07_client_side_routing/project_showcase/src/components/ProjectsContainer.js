@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import ProjectList from './ProjectList';
 import ProjectEditForm from './ProjectEditForm';
 import ProjectForm from './ProjectForm';
+import ProjectDetail from './ProjectDetail';
 
 const ProjectsContainer = () => {
   const [projects, setProjects] = useState([]);
@@ -81,6 +82,11 @@ const ProjectsContainer = () => {
         onSelectedPhaseChange={onSelectedPhaseChange}
         setSelectedPhase={setSelectedPhase}
         setSearchQuery={setSearchQuery}
+      />
+      <ProjectDetail
+        onEditProject={onEditProject}
+        onUpdateProject={onUpdateProject}
+        onDeleteProject={onDeleteProject}
       />
     </>
   )

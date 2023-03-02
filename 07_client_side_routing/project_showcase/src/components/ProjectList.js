@@ -1,21 +1,23 @@
-import ProjectListItem from "./ProjectListItem";
+import ProjectCard from "./ProjectCard";
 import { useState, useEffect } from "react";
 
-const ProjectList = ({
+function ProjectList({
   projects,
   onEditProject,
+  onUpdateProject,
   onDeleteProject,
   setSelectedPhase,
   setSearchQuery
-}) => {
+}) {
   const [searchInputText, setSearchInputText] = useState("");
 
   const projectItems = projects.map((project) => {
     return (
-      <ProjectListItem
+      <ProjectCard
         key={project.id}
         project={project}
         onEditProject={onEditProject}
+        onUpdateProject={onUpdateProject}o
         onDeleteProject={onDeleteProject}
       />
     );

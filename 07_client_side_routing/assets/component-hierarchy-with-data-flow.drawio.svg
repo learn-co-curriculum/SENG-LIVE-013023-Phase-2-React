@@ -455,7 +455,7 @@
         <path d="M 845 590 L 845 620 L 845 650 L 845 680 L 845 710" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
             <text x="889.5" y="579.5">
-                ProjectListItem
+                ProjectCard
             </text>
         </g>
         <path d="M 785 590 M 995 590 M 995 620 L 785 620" fill="none" stroke="rgb(0, 0, 0)" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>

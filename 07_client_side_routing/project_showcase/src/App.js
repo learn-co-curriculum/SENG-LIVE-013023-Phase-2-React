@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import ProjectsContainer from "./components/ProjectsContainer";
 
-const App = () => {
+function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   const onToggleDarkMode = () => {

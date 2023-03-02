@@ -17,7 +17,6 @@
   <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
   <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
   <!-- highlight Theme -->
   
@@ -103,8 +102,9 @@
 <div style="font-size: 0.8em">
 <p class="fragment">“React Router is a fully-featured client and server-side routing library for React, a JavaScript library for building user interfaces. React Router runs anywhere React runs; on the web, on the server with node.js, and on React Native.”
 <a href="https://reactrouter.com/docs/en/v6/getting-started/tutorial">React Router Docs</a></p>
-<p class="fragment">⬇️</p>
-<p class="fragment">“Client side routing is a type of routing where as the user navigates around the application or website no full page reloads take place, even when the page’s URL changes. Instead, JavaScript is used to update the URL and fetch and display new content” - Will Taylor</p>
+<div class="fragment">⬇️ 
+<p>“Client side routing is a type of routing where as the user navigates around the application or website no full page reloads take place, even when the page’s URL changes. Instead, JavaScript is used to update the URL and fetch and display new content” - Will Taylor</p>
+</div>
 </div>
             </section>
     
@@ -199,7 +199,8 @@ Before we do anything, we need to make a plan about what we want.
 </small>
   </div>
   <div class="fragment" style="width: 80%">
-<pre><code class="language-js">import React from &quot;react&quot;;
+<pre><code class="language-js">// src/index.js
+import React from &quot;react&quot;;
 import ReactDOM from &quot;react-dom&quot;;
 import { BrowserRouter as Router } from &quot;react-router-dom&quot;;
 import &quot;./index.css&quot;;
@@ -235,7 +236,8 @@ ReactDOM.render(
 <p class="fragment">Typically this is in the <code>App</code> component. Sometimes an extra component will be created designated for just routing.</p>
   </div>
   <div style="width: 65%; font-size: 0.95em" class="fragment">
-<pre><code class="language-js">return (
+<pre><code class="language-js">// src/App.js
+return (
   &lt;div className={isDarkMode ? &quot;App&quot; : &quot;App light&quot;}&gt;
     &lt;Header 
       isDarkMode={isDarkMode} 
@@ -244,16 +246,7 @@ ReactDOM.render(
     &lt;Switch&gt;
       &lt;Home /&gt;
       &lt;About /&gt;
-      {renderForm()}
-      &lt;ProjectList
-        projects={projects}
-        onEditProject={onEditProject}
-        onDeleteProject={onDeleteProject}
-        setSelectedPhase={setSelectedPhase}
-        setSearchQuery={setSearchQuery}
-      /&gt;
-      &lt;Home /&gt;
-      &lt;ProjectDetail /&gt;
+      &lt;ProjectsContainer /&gt;
     &lt;/Switch&gt;
   &lt;/div&gt;
 );
@@ -275,35 +268,38 @@ ReactDOM.render(
 <p class="fragment">💡 <code>Route</code> wraps content that should be visible when the designated route is active.</p>
 <p class="fragment">❓ Where does it belong?</p>
 <p class="fragment">Every component nested inside of the <code>Switch</code> component will be individually wrapped inside of a <code>Route</code> component.</p>
-<p class="fragment">💥 Route will be provided a <code>path</code> prop. {.fragment}
-if the current URL matches the path, the Route will render its children. Otherwise, the Route renders null.</p>
+<p class="fragment">💥 Route will be provided a <code>path</code> prop.</p>
+<p class="fragment">if the current URL matches the path, the Route will render its children. Otherwise, the Route renders null.</p>
   </div>
   <div style="width: 65%; font-size: 0.75em" class="fragment">
-<pre><code class="language-js">return (
-  &lt;div className={isDarkMode ? &quot;App&quot; : &quot;App light&quot;}&gt;
-    &lt;Header 
-      isDarkMode={isDarkMode} 
-      onToggleDarkMode={onToggleDarkMode} 
-    /&gt;
-    &lt;Switch&gt;
-      &lt;Route exact path=&quot;/&quot;&gt;
-        &lt;Home /&gt;
-      &lt;/Route&gt;
-      &lt;Route path=&quot;/projects/new&quot;&gt;
-        &lt;ProjectForm onAddProject={onAddProject} /&gt;
-      &lt;/Route&gt;
-      &lt;Route path=&quot;/projects/:id/edit&quot;&gt;
-        &lt;ProjectEditForm onUpdateProject={onUpdateProject} /&gt;
-      &lt;/Route&gt;
-      &lt;Route path=&quot;/projects/:id&quot;&gt;
-        &lt;ProjectDetail /&gt;
-      &lt;/Route&gt;
-      &lt;Route path=&quot;/projects&quot;&gt;
-        &lt;ProjectList projects={projects} onDeleteProject={onDeleteProject} /&gt;
-      &lt;/Route&gt;
-    &lt;/Switch&gt;
-  &lt;/div&gt;
-);
+<pre><code class="language-js">// src/App.js
+&lt;Switch&gt;
+  &lt;Route exact path=&quot;/&quot;&gt;
+    &lt;Home /&gt;
+  &lt;/Route&gt;
+  &lt;Route path=&quot;/about&quot;&gt;
+    &lt;About /&gt;
+  &lt;/Route&gt;
+  &lt;Route path=&quot;/projects&quot;&gt;
+    &lt;ProjectsContainer /&gt;
+  &lt;/Route&gt;
+&lt;/Switch&gt;
+</code></pre>
+<pre><code class="language-js">// src/components/ProjectsContainer.js
+&lt;Switch&gt;
+  &lt;Route path=&quot;/projects/new&quot;&gt;
+    &lt;ProjectForm onAddProject={onAddProject} /&gt;
+  &lt;/Route&gt;
+  &lt;Route path=&quot;/projects/:id/edit&quot;&gt;
+    &lt;ProjectEditForm onUpdateProject={onUpdateProject} /&gt;
+  &lt;/Route&gt;
+  &lt;Route path=&quot;/projects/:id&quot;&gt;
+    &lt;ProjectDetail /&gt;
+  &lt;/Route&gt;
+  &lt;Route path=&quot;/projects&quot;&gt;
+    &lt;ProjectList projects={projects} onDeleteProject={onDeleteProject} /&gt;
+  &lt;/Route&gt;
+&lt;/Switch&gt;
 </code></pre>
   </div>
 </div>

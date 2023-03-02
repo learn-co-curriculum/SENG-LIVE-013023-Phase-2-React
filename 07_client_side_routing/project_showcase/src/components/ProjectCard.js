@@ -1,26 +1,37 @@
-import { useState } from "react";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 
-const ProjectListItem = ({
+function ProjectCard({
   project,
   onEditProject,
+  onUpdateProject,
   onDeleteProject,
-}) => {
-  const { id, image, about, name, link, phase } = project;
+}) {
+  const { id, image, about, name, link, phase, claps } = project;
 
-  const [clapCount, setClapCount] = useState(0);
-
-  const handleClap = (clapCount) => setClapCount(clapCount + 1);
+  const handleClap = () => {
+    const newClapCount = claps + 1;
+    fetch(`http://localhost:4000/projects/${id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ claps: newClapCount })
+    })
+      .then(response => response.json())
+      .then(onUpdateProject);
+  };
 
   const handleEditClick = () => {
     onEditProject(project);
   };
 
   const handleDeleteClick = () => {
-    onDeleteProject(id)
-    fetch(`http://localhost:4000/projects/${id}`, {
-      method: "DELETE"
-    })
+    if (window.confirm("Are you sure you want to delete this project?")) {
+      onDeleteProject(id)
+      fetch(`http://localhost:4000/projects/${id}`, {
+        method: "DELETE"
+      })
+    }
   };
 
   return (
@@ -28,7 +39,7 @@ const ProjectListItem = ({
       <figure className="image">
         <img src={image} alt={name} />
         <button onClick={handleClap} className="claps">
-          👏{clapCount}
+          👏{claps}
         </button>
       </figure>
 
@@ -57,4 +68,4 @@ const ProjectListItem = ({
   );
 };
 
-export default ProjectListItem;
+export default ProjectCard;

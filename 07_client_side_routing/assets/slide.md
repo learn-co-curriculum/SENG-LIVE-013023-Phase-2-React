@@ -27,10 +27,10 @@ title: "P2L7 - React Client Side Routing slides"
 "React Router is a fully-featured client and server-side routing library for React, a JavaScript library for building user interfaces. React Router runs anywhere React runs; on the web, on the server with node.js, and on React Native."
 [React Router Docs](https://reactrouter.com/docs/en/v6/getting-started/tutorial) {.fragment}
 
-⬇️ {.fragment}
+<div class="fragment">⬇️ 
 
-"Client side routing is a type of routing where as the user navigates around the application or website no full page reloads take place, even when the page’s URL changes. Instead, JavaScript is used to update the URL and fetch and display new content" - Will Taylor {.fragment}
-
+"Client side routing is a type of routing where as the user navigates around the application or website no full page reloads take place, even when the page’s URL changes. Instead, JavaScript is used to update the URL and fetch and display new content" - Will Taylor
+</div>
 </div>
 
 ---
@@ -91,6 +91,7 @@ Since the `App` component is imported and mounted inside the `index.js` file, th
   <div class="fragment" style="width: 80%">
 
 ```js
+// src/index.js
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -133,6 +134,7 @@ Typically this is in the `App` component. Sometimes an extra component will be c
   <div style="width: 65%; font-size: 0.95em" class="fragment">
 
 ```js
+// src/App.js
 return (
   <div className={isDarkMode ? "App" : "App light"}>
     <Header 
@@ -142,16 +144,7 @@ return (
     <Switch>
       <Home />
       <About />
-      {renderForm()}
-      <ProjectList
-        projects={projects}
-        onEditProject={onEditProject}
-        onDeleteProject={onDeleteProject}
-        setSelectedPhase={setSelectedPhase}
-        setSearchQuery={setSearchQuery}
-      />
-      <Home />
-      <ProjectDetail />
+      <ProjectsContainer />
     </Switch>
   </div>
 );
@@ -176,37 +169,43 @@ return (
 Every component nested inside of the `Switch` component will be individually wrapped inside of a `Route` component. {.fragment}
 
 💥 Route will be provided a `path` prop. {.fragment}
+
 if the current URL matches the path, the Route will render its children. Otherwise, the Route renders null. {.fragment}
 
   </div>
   <div style="width: 65%; font-size: 0.75em" class="fragment">
 
 ```js
-return (
-  <div className={isDarkMode ? "App" : "App light"}>
-    <Header 
-      isDarkMode={isDarkMode} 
-      onToggleDarkMode={onToggleDarkMode} 
-    />
-    <Switch>
-      <Route exact path="/">
-        <Home />
-      </Route>
-      <Route path="/projects/new">
-        <ProjectForm onAddProject={onAddProject} />
-      </Route>
-      <Route path="/projects/:id/edit">
-        <ProjectEditForm onUpdateProject={onUpdateProject} />
-      </Route>
-      <Route path="/projects/:id">
-        <ProjectDetail />
-      </Route>
-      <Route path="/projects">
-        <ProjectList projects={projects} onDeleteProject={onDeleteProject} />
-      </Route>
-    </Switch>
-  </div>
-);
+// src/App.js
+<Switch>
+  <Route exact path="/">
+    <Home />
+  </Route>
+  <Route path="/about">
+    <About />
+  </Route>
+  <Route path="/projects">
+    <ProjectsContainer />
+  </Route>
+</Switch>
+```
+
+```js
+// src/components/ProjectsContainer.js
+<Switch>
+  <Route path="/projects/new">
+    <ProjectForm onAddProject={onAddProject} />
+  </Route>
+  <Route path="/projects/:id/edit">
+    <ProjectEditForm onUpdateProject={onUpdateProject} />
+  </Route>
+  <Route path="/projects/:id">
+    <ProjectDetail />
+  </Route>
+  <Route path="/projects">
+    <ProjectList projects={projects} onDeleteProject={onDeleteProject} />
+  </Route>
+</Switch>
 ```
 
   </div>

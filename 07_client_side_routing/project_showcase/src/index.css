@@ -251,11 +251,11 @@ select:focus {
   margin: 0.5rem 0;
 }
 
-.card .extra {
+.extra {
   margin: 0.5rem;
 }
 
-.card .extra {
+.extra {
   display: flex;
   justify-content: space-between;
 }

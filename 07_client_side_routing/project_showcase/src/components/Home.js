@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Home = () => {
+function Home() {
   const [recentProjects, setRecentProjects] = useState([]);
 
   useEffect(() => {
