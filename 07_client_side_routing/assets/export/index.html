@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>P2L7 - React Client Side Routing slides</title>
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
+
+
+  <!-- highlight Theme -->
+  
+  <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/monokai.min.css">
+  
+	
+		
+	<link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/chalkboard/style.css">
+	
+	
+	
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/customcontrols/style.css">
+  
+	
+
+
+
+  <!-- Revealjs Theme -->
+  
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/theme/night.css" id="theme">
+  
+  
+
+  <link rel="stylesheet" href="libs/styles/tasklist.css">
+	<link rel="stylesheet" href="libs/styles/iota.css">
+	<link rel="stylesheet" href="libs/styles/layout.css">
+
+
+  <!-- Revealjs Theme -->
+  
+
+   <!-- css list -->
+	
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  
+
+   
+
+</head>
+
+<body>
+
+   
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      
+
+
+    
+        <section >
+            
+            <h1> Client Side Routing 📲 </h1>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2><strong> ✅ Objectives </strong></h2>
+<ul>
+<li>Create a multi-page SPA</li>
+<li>Utilize the most common react-router components to build a SPA: BrowserRouter, Route, Switch, Link, and NavLink</li>
+<li>Use custom hooks like useHistory and useParams to access the state of the router</li>
+<li>Use the history object to navigate pages</li>
+<li>Create dynamic routes and use params</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>💡 What is client side routing and React router?</h3>
+<div style="font-size: 0.8em">
+<p class="fragment">“React Router is a fully-featured client and server-side routing library for React, a JavaScript library for building user interfaces. React Router runs anywhere React runs; on the web, on the server with node.js, and on React Native.”
+<a href="https://reactrouter.com/docs/en/v6/getting-started/tutorial">React Router Docs</a></p>
+<div class="fragment">⬇️ 
+<p>“Client side routing is a type of routing where as the user navigates around the application or website no full page reloads take place, even when the page’s URL changes. Instead, JavaScript is used to update the URL and fetch and display new content” - Will Taylor</p>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>🗒️ Planning Routes</h3>
+<div style="font-size: 0.8em">
+Before we do anything, we need to make a plan about what we want.
+<p>What URLs do we want our application to have to simulate the feeling of different “pages”?</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Home</td>
+<td>/ (root route)</td>
+</tr>
+<tr>
+<td>About</td>
+<td>/about</td>
+</tr>
+<tr>
+<td>ProjectForm</td>
+<td>/projects/new</td>
+</tr>
+<tr>
+<td>ProjectEditForm</td>
+<td>/projects/:id/edit</td>
+</tr>
+<tr>
+<td>ProjectDetail</td>
+<td>/projects/:id</td>
+</tr>
+<tr>
+<td>ProjectList</td>
+<td>/projects</td>
+</tr>
+</tbody>
+</table>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>The Primary React Router Components</h3>
+<ul>
+<li>
+<p>BrowserRouter</p>
+</li>
+<li>
+<p>Switch</p>
+</li>
+<li>
+<p>Route</p>
+</li>
+<li>
+<p>Link</p>
+</li>
+<li>
+<p>NavLink</p>
+</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>1️⃣ BrowserRouter</h3>
+<div style="font-size: 0.8em">
+<div style="display: flex">
+  <div style="width: 30%; text-align: left;">
+  <small>
+<p>💡 <code>BrowserRouter</code> is a wrapper for App to allow conditional rendering based on the URL</p>
+<p class="fragment">❓ Where does it belong?</p>
+<p class="fragment">Since the <code>App</code> component is imported and mounted inside the <code>index.js</code> file, this is a great place to wrap the component within <code>BrowserRouter</code></p>
+</small>
+  </div>
+  <div class="fragment" style="width: 80%">
+<pre><code class="language-js">// src/index.js
+import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom&quot;;
+import { BrowserRouter as Router } from &quot;react-router-dom&quot;;
+import &quot;./index.css&quot;;
+
+import App from &quot;./App&quot;;
+
+ReactDOM.render(
+  &lt;React.StrictMode&gt;
+    &lt;Router&gt;
+      &lt;App /&gt;
+    &lt;/Router&gt;
+  &lt;/React.StrictMode&gt;,
+  document.getElementById(&quot;root&quot;)
+);
+</code></pre>
+  </div>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Switch Component</h3>
+<div style="display: flex; font-size: 0.8em">
+  <div style="width: 35%; font-size: 0.65em; text-align: left;">
+<p class="fragment">💡 <code>Switch</code> is a wrapper for Routes. Looks through all its child Route components and returns the first one that matches the current URL (like a switch statement in JavaScript)</p>
+<p class="fragment">❓ Where does it belong?</p>
+<p class="fragment">Consider where most of the applications components are rendered, this is where they will be nested inside the <code>Switch</code> component.</p>
+<p class="fragment">Typically this is in the <code>App</code> component. Sometimes an extra component will be created designated for just routing.</p>
+  </div>
+  <div style="width: 65%; font-size: 0.95em" class="fragment">
+<pre><code class="language-js">// src/App.js
+return (
+  &lt;div className={isDarkMode ? &quot;App&quot; : &quot;App light&quot;}&gt;
+    &lt;Header 
+      isDarkMode={isDarkMode} 
+      onToggleDarkMode={onToggleDarkMode} 
+    /&gt;
+    &lt;Switch&gt;
+      &lt;Home /&gt;
+      &lt;About /&gt;
+      &lt;ProjectsContainer /&gt;
+    &lt;/Switch&gt;
+  &lt;/div&gt;
+);
+</code></pre>
+  </div>
+</div>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Creating routes using the Route Component</h4>
+<div style="display: flex; font-size: 0.8em">
+  <div style="width: 35%; font-size: 0.65em; text-align: left;">
+<p class="fragment">💡 <code>Route</code> wraps content that should be visible when the designated route is active.</p>
+<p class="fragment">❓ Where does it belong?</p>
+<p class="fragment">Every component nested inside of the <code>Switch</code> component will be individually wrapped inside of a <code>Route</code> component.</p>
+<p class="fragment">💥 Route will be provided a <code>path</code> prop.</p>
+<p class="fragment">if the current URL matches the path, the Route will render its children. Otherwise, the Route renders null.</p>
+  </div>
+  <div style="width: 65%; font-size: 0.75em" class="fragment">
+<pre><code class="language-js">// src/App.js
+&lt;Switch&gt;
+  &lt;Route exact path=&quot;/&quot;&gt;
+    &lt;Home /&gt;
+  &lt;/Route&gt;
+  &lt;Route path=&quot;/about&quot;&gt;
+    &lt;About /&gt;
+  &lt;/Route&gt;
+  &lt;Route path=&quot;/projects&quot;&gt;
+    &lt;ProjectsContainer /&gt;
+  &lt;/Route&gt;
+&lt;/Switch&gt;
+</code></pre>
+<pre><code class="language-js">// src/components/ProjectsContainer.js
+&lt;Switch&gt;
+  &lt;Route path=&quot;/projects/new&quot;&gt;
+    &lt;ProjectForm onAddProject={onAddProject} /&gt;
+  &lt;/Route&gt;
+  &lt;Route path=&quot;/projects/:id/edit&quot;&gt;
+    &lt;ProjectEditForm onUpdateProject={onUpdateProject} /&gt;
+  &lt;/Route&gt;
+  &lt;Route path=&quot;/projects/:id&quot;&gt;
+    &lt;ProjectDetail /&gt;
+  &lt;/Route&gt;
+  &lt;Route path=&quot;/projects&quot;&gt;
+    &lt;ProjectList projects={projects} onDeleteProject={onDeleteProject} /&gt;
+  &lt;/Route&gt;
+&lt;/Switch&gt;
+</code></pre>
+  </div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Link Component</h3>
+<div style="display: flex; font-size: 0.8em">
+  <div style="width: 40%; text-align: left; font-size: 0.8em">
+<p class="fragment">💡 <code>Link</code> creates an anchor tag in your application that will navigate using React Router instead of the browser default</p>
+<p class="fragment">We want to use <code>Link</code> for navigation in our application. It will ensure that a page reload does not occur, unlike the use of an anchor tag <code>&lt;a&gt;&lt;/a&gt;</code></p>
+<p class="fragment">💥 Link will be provided a <code>to</code> prop which indicates where the link should navigate to (generates the href)</p>
+  </div>
+  <div style="width: 60%" class="fragment">
+<pre><code class="language-js">return (
+  &lt;header&gt;
+    &lt;nav&gt;
+      &lt;Link to=&quot;/&quot; style={{ borderBottom: &quot;none&quot; }}&gt;
+        &lt;h1 className=&quot;branding&quot;&gt;
+          &lt;span className=&quot;logo&quot;&gt;{&quot;//&quot;}&lt;/span&gt;
+          Project Showcase
+        &lt;/h1&gt;
+      &lt;/Link&gt;
+      &lt;div className=&quot;navigation&quot;&gt;
+        &lt;Link className=&quot;button&quot; to=&quot;/projects&quot;&gt;
+          All Projects
+        &lt;/Link&gt;
+        &lt;Link className=&quot;button&quot; to=&quot;/projects/new&quot;&gt;
+          Add Project
+        &lt;/Link&gt;
+        ...
+      &lt;/div&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+);
+</code></pre>
+  </div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>NavLink Component</h3>
+<div style="display: flex; font-size: 0.8em">
+  <div style="width: 40%; text-align: left; font-size: 0.8em">
+<p class="fragment">💡 <code>NavLink</code> is the same as Link with the additional feature that an “active” class will be added when the url matches the value of the ‘to’ prop</p>
+<p class="fragment">💥 If you’re building sidebar navigation with subsections, you may want the active class to apply to multiple links (the main and subsection)</p>
+<p class="fragment">💥 Otherwise, if you want the active class to only apply if the current URL is an exact match to the <code>NavLink</code>, then add the <code>exact</code> prop to the <code>NavLink</code></p>
+  </div>
+  <div style="width: 60%" class="fragment">
+<pre><code class="language-js">return (
+  &lt;header&gt;
+    &lt;nav&gt;
+      ...
+      &lt;div className=&quot;navigation&quot;&gt;
+        &lt;NavLink 
+          className=&quot;button&quot; 
+          exact to=&quot;/projects&quot;
+        &gt;
+          All Projects
+        &lt;/NavLink&gt;
+        &lt;NavLink 
+          className=&quot;button&quot; 
+          exact to=&quot;/projects/new&quot;
+        &gt;
+          Add Project
+        &lt;/NavLink&gt;
+        ...
+      &lt;/div&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+);
+</code></pre>
+  </div>
+</div>
+            </section>
+    
+
+
+    </div>
+
+
+  </div>
+
+  <div class="line top"></div>
+  <div class="line bottom"></div>
+  <div class="line left"></div>
+  <div class="line right"></div>
+
+  <script src="libs/reveal.js/4.3.1/reveal.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/notes/notes.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/markdown/markdown.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/highlight/highlight.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/fullscreen/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/svg.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/Chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/d3.v3.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3.patch.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/queue.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/topojson.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/function-plot.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/customcontrols/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/embed-tweet/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/verticator/verticator.js"></script>
+
+<script src="libs/reveal.js/4.3.1/plugin/zoom/zoom.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/search/search.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/menu/menu.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chalkboard/plugin.js"></script>
+
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/plugin.js"></script>  -->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/recorder.js"></script>-->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/RecordRTC.js"></script>-->
+
+  
+
+<script>
+  const printPlugins = [
+      RevealNotes,
+      RevealHighlight,
+      RevealMath.MathJax3,
+      RevealAnimate,
+      RevealChalkboard, 
+			RevealEmbedTweet,
+			RevealChart,
+		];
+
+		const plugins =  [...printPlugins,
+		RevealZoom, 
+		RevealSearch, 
+				RevealMarkdown, 
+				RevealMenu, 
+				RevealFullscreen,
+				RevealAnything,
+				//RevealAudioSlideshow,
+				//RevealAudioRecorder,
+				RevealCustomControls, 
+				// poll
+				// question
+				// seminar
+				Verticator 
+				 ]
+
+
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: true,
+      controlsTutorial: true,
+      controlsLayout: 'bottom-right',
+      controlsBackArrows: 'faded',
+      progress: true,
+      slideNumber: false,
+      //#showSlideNumber "all" "print" "speaker"
+      hash: true, //# hash: false,
+      //# respondToHashChanges: true,
+      //# history: false,
+      keyboard: true,
+      //#keyboardCondition: null,
+      overview: true,
+      center: true,
+      touch: true,
+      loop: false,
+      rtl: false,
+      //#navigationMode: 'default', linear grid
+      shuffle: false,
+      fragments: true,
+      fragmentInURL: false,
+      embedded: false,
+      help: true,
+      //#pause: true
+      showNotes: false,
+      autoPlayMedia: false, // TODO fix this to a nullable value
+      //#preloadIframes: null. true false
+      //#autoAnimate: true
+      //#autoAnimateMatcher: null,
+      //#autoAnimateEasing: 'ease',
+      //autoAnimateDuration: 1.0,
+      //#autoAnimateUnmatched: true
+      //#autoAnimateStyles: []
+      autoSlide: 0, // TODO fix this to a falseable value
+      autoSlideStoppable: true,
+      autoSlideMethod: '0',
+      defaultTiming: 120,
+      mouseWheel: false,
+      //#previewLinks: false
+      //#postMessage: true, // TODO : this can cause issues with the vscode api ???
+      //#postMessageEvents: false,
+      //#focusBodyOnPageVisibilityChange: true,
+      transition: 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      //#pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+      //#pdfSeparateFragments: true,
+      //#pdfPageHeightOffset: -1,
+      viewDistance: 3,
+      //#mobileViewDistance: 2,
+      display: 'block',
+      //#hideInactiveCursor: true,
+      //#hideCursorTime: 5000
+
+      // Parallax Background
+      parallaxBackgroundImage: '',
+      parallaxBackgroundSize: '',
+      parallaxBackgroundHorizontal: 0,
+      parallaxBackgroundVertical: 0,
+
+      //Presentation Size
+      width: 960,
+			height: 700,
+			margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2,
+      disableLayout: false,
+
+      audio: {
+        prefix: 'audio/', // audio files are stored in the "audio" folder
+        suffix: '.ogg', // audio files have the ".ogg" ending
+        textToSpeechURL: null, // the URL to the text to speech converter
+        defaultNotes: false, // use slide notes as default for the text to speech converter
+        defaultText: false, // use slide text as default for the text to speech converter
+        advance: 0, // advance to next slide after given time in milliseconds after audio has played, use negative value to not advance
+        autoplay: false, // automatically start slideshow
+        defaultDuration: 5, // default duration in seconds if no audio is available
+        defaultAudios: true, // try to play audios with names such as audio/1.2.ogg
+        playerOpacity: 0.05, // opacity value of audio player if unfocused
+        playerStyle: 'position: fixed; bottom: 4px; left: 25%; width: 50%; height:75px; z-index: 33;', // style used for container of audio controls
+        startAtFragment: false, // when moving to a slide, start at the current fragment or at the start of the slide
+      },
+      
+      chalkboard: { // font-awesome.min.css must be available
+        //src: "chalkboard/chalkboard.json",
+        storage: "chalkboard-demo",
+      },
+      
+			customcontrols: {
+					controls: [
+      						{
+						  id: 'toggle-overview',
+						  title: 'Toggle overview (O)',
+						  icon: '<i class="fa fa-th"></i>',
+						  action: 'Reveal.toggleOverview();'
+						}
+						,
+      {
+        icon: '<i class="fa fa-pen-square"></i>',
+        title: 'Toggle chalkboard (B)',
+        action: 'RevealChalkboard.toggleChalkboard();'
+      },
+      {
+        icon: '<i class="fa fa-pen"></i>',
+        title: 'Toggle notes canvas (C)',
+        action: 'RevealChalkboard.toggleNotesCanvas();'
+      }
+      
+				]
+			},
+			chart: {
+					defaults: { 
+						color: 'lightgray', // color of labels
+						scale: { 
+							beginAtZero: true, 
+							ticks: { stepSize: 1 },
+							grid: { color: "lightgray" } , // color of grid lines
+						},
+					},
+					line: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ], "borderDash": [ [5,10], [0,0] ] }, 
+					bar: { backgroundColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+					pie: { backgroundColor: [ ["rgba(0,0,0,.8)" , "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"] ]},
+					radar: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+			},
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: { Macros: { RR: "{\\bf R}" } }
+				},
+				anything: [ 
+				{
+		className: "plot",
+		defaults: {width:500, height: 500, grid:true},
+		initialize: (function(container, options){ options.target = "#"+container.id; functionPlot(options) })
+	 },
+	 {
+		className: "chart",  
+		initialize: (function(container, options){ container.chart = new Chart(container.getContext("2d"), options);  })
+	 },
+	 {
+		className: "anything",
+		initialize: (function(container, options){ if (options && options.initialize) { options.initialize(container)} })
+	 },
+					],
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: (window.location.search.match(/print-pdf/gi) ? printPlugins : plugins ) 
+		});
+			
+
+
+	    // Change chalkboard theme : 
+		function changeTheme(input) {
+			var config = {};
+			config.theme = input.value;
+			Reveal.getPlugin("RevealChalkboard").configure(config);
+			input.blur();
+		}
+
+		// // Handle the message inside the webview
+        // window.addEventListener('message', event => {
+
+        //     const message = event.data; // The JSON data our extension sent
+
+        //     switch (message.command) {
+        //         case 'refactor':
+        //             Reveal.toggleHelp();
+        //     }
+        // });
+
+		if (window.location.search.match(/print-pdf-now/gi)) {
+      		setTimeout(() => {
+				window.print();
+			  }, 2500);
+			
+    }
+</script>
+
+</body>
+
+</html>
