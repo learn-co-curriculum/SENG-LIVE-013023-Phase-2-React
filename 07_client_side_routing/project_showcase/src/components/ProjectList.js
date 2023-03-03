@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 
 function ProjectList({
   projects,
-  onEditProject,
   onUpdateProject,
   onDeleteProject,
   setSelectedPhase,
@@ -16,7 +15,6 @@ function ProjectList({
       <ProjectCard
         key={project.id}
         project={project}
-        onEditProject={onEditProject}
         onUpdateProject={onUpdateProject}o
         onDeleteProject={onDeleteProject}
       />

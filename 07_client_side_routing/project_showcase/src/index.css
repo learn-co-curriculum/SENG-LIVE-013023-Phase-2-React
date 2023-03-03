@@ -67,10 +67,10 @@ button, .button {
 }
 
 button.active,
-button:focus,
+/* button:focus, */
 button:hover,
 .button.active,
-.button:focus,
+/* .button:focus, */
 .button:hover {
   outline: none;
   color: var(--background);

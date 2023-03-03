@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [recentProjects, setRecentProjects] = useState([]);
@@ -24,9 +25,9 @@ function Home() {
         <p key={project.id}>{project.name}</p>
       ))}
       <div style={{ margin: "1rem 0" }}>
-        <a className="button" href="/projects">
+        <Link className="button" to="/projects">
           View All Projects
-        </a>
+        </Link>
       </div>
     </section>
   );
